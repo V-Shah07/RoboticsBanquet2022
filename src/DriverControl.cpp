@@ -6,7 +6,7 @@ const double rightMultiplier = 1.0;
 const int mogoLiftVelocity = 100;
 const int clampVelocity = 100;
 const int fourBarVelocity = 100;
-void setMotors()
+void moveDrive()
 {
     double power = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     double turn = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);

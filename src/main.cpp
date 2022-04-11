@@ -106,9 +106,9 @@ void opcontrol() {
 	clamp.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	while (true) 
 	{
-		setMotors();
-		moveClamp();
-		move4Bar();
-		moveLift();
+		moveDrive();
+		//moveClamp();
+		//move4Bar();
+		//moveLift();
 	}
 }

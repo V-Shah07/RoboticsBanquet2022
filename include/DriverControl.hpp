@@ -1,6 +1,6 @@
 #include "main.h"
 
-void setMotors();
+void moveDrive();
 void moveLift();
 void moveClamp();
 void move4Bar();
