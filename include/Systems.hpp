@@ -4,17 +4,17 @@ const int backLeftPort = 1;
 const int backRightPort = 2;
 const int frontLeftPort = 3;
 const int frontRightPort = 4;
-const bool backLeftReversed = false;
+const bool backLeftReversed = true;
 const bool backRightReversed = false;
-const bool frontLeftReversed = false;
+const bool frontLeftReversed = true;
 const bool frontRightReversed = false;
 
-const int left4BarPort = 5;
-const int right4BarPort = 6;
+const int left4BarPort = 8;
+const int right4BarPort = 4;
 const bool left4BarReversed = false;
 const bool right4BarReversed = false;
 
-const int clampPort = 7;
+const int clampPort = 9;
 const bool clampReversed = false;
 
 const int liftPort = 8;

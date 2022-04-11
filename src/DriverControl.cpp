@@ -3,13 +3,14 @@
 const double powerMultiplier = 1.5;
 const double leftMultiplier = 1.0;
 const double rightMultiplier = 1.0;
+const double fourBarMultiplier = 1.5;
 const int mogoLiftVelocity = 100;
 const int clampVelocity = 100;
 const int fourBarVelocity = 100;
 void moveDrive()
 {
     double power = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    double turn = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+    double turn = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X);
 
     power *= powerMultiplier;
 
@@ -76,21 +77,14 @@ void moveClamp()
 }
 void move4Bar()
 {
-    int up = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
-    int down = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
-    if(up)
+    double verticalMovement = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    if(abs(verticalMovement) < 20)
     {
-        left4Bar.move_velocity(fourBarVelocity);
-        right4Bar.move_velocity(fourBarVelocity);
+        verticalMovement = 0;
     }
-    else if(down)
-    {
-        left4Bar.move_velocity(-fourBarVelocity);
-        right4Bar.move_velocity(-fourBarVelocity);
-    }
-    else
-    {
-        left4Bar.move_velocity(0);
-        right4Bar.move_velocity(0);
-    }
+    
+    verticalMovement *= fourBarMultiplier;
+    left4Bar.move_velocity(verticalMovement);
+    right4Bar.move_velocity(verticalMovement);
+    
 }
