@@ -12,6 +12,6 @@ Motor clamp(clampPort, pros::E_MOTOR_GEARSET_36, clampReversed, pros::E_MOTOR_EN
 
 Motor lift(liftPort, pros::E_MOTOR_GEARSET_36, liftReversed, pros::E_MOTOR_ENCODER_DEGREES);
 
-extern pros::Controller controller;
+pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 bool clampon = false;

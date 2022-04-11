@@ -36,6 +36,6 @@ extern Motor clamp;
 //lift motor
 extern Motor lift;
 
-pros::Controller controller;
+extern pros::Controller controller;
 
 extern bool clampOn;
