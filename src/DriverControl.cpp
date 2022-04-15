@@ -6,7 +6,6 @@ const double rightMultiplier = 1.0;
 const double fourBarMultiplier = 1.5;
 const int mogoLiftVelocity = 100;
 const int clampVelocity = 100;
-const int fourBarVelocity = 100;
 void moveDrive()
 {
     double power = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -33,7 +32,7 @@ void moveDrive()
 }
 void moveLift()
 {
-    bool up = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+    bool up = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     bool down = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
     if(up)
     {
@@ -51,24 +50,36 @@ void moveLift()
 }
 void moveClamp()
 {
-    bool grip = controller.get_digital(pros::E_CONTROLLER_DIGITAL_A);
-    bool release = controller.get_digital(pros::E_CONTROLLER_DIGITAL_B);
-    if(grip)
-    {
-        clampOn = true;
-    }
-    else if (release)
-    {
-        clampOn = false;
-        clamp.tare_position();
-        while(clamp.get_position() > -500)
-        {
-            clamp.move_velocity(-clampVelocity);
-        }
-    }
-    if(clampOn)
+    // bool grip = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+    // bool release = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    // if(grip)
+    // {
+    //     clampOn = true;
+    // }
+    // else if (release)
+    // {
+    //     clampOn = false;
+    //     clamp.tare_position();
+    //     while(clamp.get_position() > -500)
+    //     {
+    //         clamp.move_velocity(-clampVelocity);
+    //     }
+    // }
+    // if(clampOn)
+    // {
+    //     clamp.move_velocity(clampVelocity);
+    // }
+    // else
+    // {
+    //     clamp.move_velocity(0);
+    // }
+    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
     {
         clamp.move_velocity(clampVelocity);
+    }
+    else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
+    {
+        clamp.move_velocity(-clampVelocity);
     }
     else
     {
@@ -77,14 +88,16 @@ void moveClamp()
 }
 void move4Bar()
 {
-    double verticalMovement = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-    if(abs(verticalMovement) < 20)
+   
+    double power = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+
+    power *= fourBarMultiplier;
+
+    if(abs(power) <= 20)
     {
-        verticalMovement = 0;
+        power = 0;
     }
-    
-    verticalMovement *= fourBarMultiplier;
-    left4Bar.move_velocity(verticalMovement);
-    right4Bar.move_velocity(verticalMovement);
-    
+
+    left4Bar.move_velocity(power);
+    right4Bar.move_velocity(power);
 }

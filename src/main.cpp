@@ -106,16 +106,11 @@ void opcontrol() {
 	clamp.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	while (true) 
 	{
-		//moveDrive();
-		//moveClamp();
-		//move4Bar();
+		moveDrive();
+		moveClamp();
+		move4Bar();
 		//moveLift();
-		right4Bar.move_velocity(100);
 		// left4Bar.move_velocity(100);
-		if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
-		{
-			clamp.move_velocity(-100);
-		}
 		
 	}
 }
