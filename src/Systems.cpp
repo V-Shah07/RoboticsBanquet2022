@@ -15,3 +15,5 @@ Motor lift(liftPort, pros::E_MOTOR_GEARSET_36, liftReversed, pros::E_MOTOR_ENCOD
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 bool clampOn = false;
+
+pros::IMU inertialSensor(inertialPort);

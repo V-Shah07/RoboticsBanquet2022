@@ -20,6 +20,8 @@ const bool clampReversed = true;
 const int liftPort = 8;
 const bool liftReversed = true;
 
+const int inertialPort = 12;
+
 //Drive motors
 extern Motor backLeft;
 extern Motor backRight;
@@ -35,6 +37,8 @@ extern Motor clamp;
 
 //lift motor
 extern Motor lift;
+
+extern pros::IMU inertialSensor;
 
 extern pros::Controller controller;
 

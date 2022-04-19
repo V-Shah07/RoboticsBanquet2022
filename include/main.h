@@ -79,6 +79,7 @@ void opcontrol(void);
 
 #include "DriverControl.hpp"
 #include "Systems.hpp"
+#include "ProgSkills.hpp"
 
 #endif
 
