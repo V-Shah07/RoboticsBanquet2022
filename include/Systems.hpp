@@ -11,14 +11,14 @@ const bool frontRightReversed = false;
 
 const int left4BarPort = 5;
 const int right4BarPort = 6;
-const bool left4BarReversed = false;
-const bool right4BarReversed = true;
+const bool left4BarReversed = true;
+const bool right4BarReversed = false;
 
 const int clampPort = 7;
 const bool clampReversed = true;
 
 const int liftPort = 8;
-const bool liftReversed = false;
+const bool liftReversed = true;
 
 //Drive motors
 extern Motor backLeft;

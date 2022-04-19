@@ -109,8 +109,8 @@ void opcontrol() {
 		moveDrive();
 		moveClamp();
 		move4Bar();
-		//moveLift();
-		// left4Bar.move_velocity(100);
+		moveLift();
+		pros::delay(10);
 		
 	}
 }

@@ -5,7 +5,7 @@ const double leftMultiplier = 1.0;
 const double rightMultiplier = 1.0;
 const double fourBarMultiplier = 1.5;
 const int mogoLiftVelocity = 100;
-const int clampVelocity = 100;
+const int clampVelocity = 70;
 void moveDrive()
 {
     double power = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -32,8 +32,8 @@ void moveDrive()
 }
 void moveLift()
 {
-    bool up = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    bool down = controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    bool up = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+    bool down = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
     if(up)
     {
         lift.move_velocity(mogoLiftVelocity);
@@ -48,22 +48,26 @@ void moveLift()
 
     }
 }
+void clampHelper()
+{
+
+}
 void moveClamp()
 {
-    // bool grip = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    // bool release = controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
-    // if(grip)
+    // if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
     // {
     //     clampOn = true;
     // }
-    // else if (release)
+
+    // if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
     // {
     //     clampOn = false;
     //     clamp.tare_position();
-    //     while(clamp.get_position() > -500)
+    //     while(clamp.get_position() > -450)
     //     {
     //         clamp.move_velocity(-clampVelocity);
     //     }
+        
     // }
     // if(clampOn)
     // {
@@ -73,18 +77,15 @@ void moveClamp()
     // {
     //     clamp.move_velocity(0);
     // }
-    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
+    if(controller.get_digital(E_CONTROLLER_DIGITAL_R1))
     {
         clamp.move_velocity(clampVelocity);
     }
-    else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
+    if(controller.get_digital(E_CONTROLLER_DIGITAL_R2))
     {
         clamp.move_velocity(-clampVelocity);
     }
-    else
-    {
-        clamp.move_velocity(0);
-    }
+
 }
 void move4Bar()
 {
