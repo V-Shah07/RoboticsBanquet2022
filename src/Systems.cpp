@@ -17,3 +17,8 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 bool clampOn = false;
 
 pros::IMU inertialSensor(inertialPort);
+
+bool right = true;
+bool left = false;
+bool up = true;
+bool down = false;

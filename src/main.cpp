@@ -1,5 +1,7 @@
 #include "main.h"
 
+
+
 /**
  * A callback function for LLEMU's center button.
  *
@@ -77,7 +79,50 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	backLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	backRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	frontLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	frontRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+	left4Bar.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	right4Bar.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+	lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+	clamp.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
+	bool runAuton = true;
+	bool diagonalSide = false;
+	if(runAuton)
+	{
+		if(diagonalSide == true)
+		{
+			//move(66.5, true, 2.0);
+			move(62.5, true, 6.0);
+			pros::delay(50);
+			moveClamp(down);
+			move(45.0, false, 12.0);
+			moveClamp(up);
+			clamp.move_velocity(0);
+			pros::delay(10);
+		}
+		else
+		{
+			//move(66.5, true, 2.0);
+			move(60.5, true, 6.0);
+			pros::delay(500);
+			moveClamp(down);
+			move(45.0, false, 12.0);
+			moveClamp(up);
+			clamp.move_velocity(0);
+			pros::delay(10);
+		}
+	}
+	else{
+	progSkill();
+	}
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -103,7 +148,8 @@ void opcontrol() {
 
 	lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-	clamp.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	clamp.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
 	while (true) 
 	{
 		moveDrive();
@@ -113,4 +159,5 @@ void opcontrol() {
 		pros::delay(10);
 		
 	}
+		
 }

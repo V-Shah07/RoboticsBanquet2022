@@ -5,7 +5,7 @@ const double leftMultiplier = 1.0;
 const double rightMultiplier = 1.0;
 const double fourBarMultiplier = 1.5;
 const int mogoLiftVelocity = 100;
-const int clampVelocity = 70;
+const int clampVelocity = 200;
 void moveDrive()
 {
     double power = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
@@ -48,10 +48,7 @@ void moveLift()
 
     }
 }
-void clampHelper()
-{
 
-}
 void moveClamp()
 {
     // if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
@@ -77,13 +74,17 @@ void moveClamp()
     // {
     //     clamp.move_velocity(0);
     // }
+    
     if(controller.get_digital(E_CONTROLLER_DIGITAL_R1))
     {
         clamp.move_velocity(clampVelocity);
-    }
-    if(controller.get_digital(E_CONTROLLER_DIGITAL_R2))
+    } 
+    else if(controller.get_digital(E_CONTROLLER_DIGITAL_R2))
     {
         clamp.move_velocity(-clampVelocity);
+    }
+    else{
+        clamp.move_velocity(0);
     }
 
 }
